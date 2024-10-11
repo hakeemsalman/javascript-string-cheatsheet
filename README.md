@@ -4,26 +4,28 @@
 
 <br/>
 
-> the textual data is stored as strings. There is *no separate type* for a single character.
+- the textual data is stored as strings. There is *no separate type* for a single character.
+
+--- 
 
 - [Strings](#strings)
-  - [Quotes](#quotes)
-  - [Special characters](#special-characters)
+  - [1 Quotes](#1-quotes)
+  - [2 Special characters](#2-special-characters)
     - [1. create multiline strings](#1-create-multiline-strings)
   - [String Length](#string-length)
   - [Accessing characters](#accessing-characters)
   - [Iterate](#iterate)
   - [Strings are Immutable](#strings-are-immutable)
   - [Searching for a substring](#searching-for-a-substring)
-    - [1. **str.indexOf**](#1-strindexof)
-    - [2. **str.lastIndexOf(substr, position)**](#2-strlastindexofsubstr-position)
-    - [3. **str.includes**:](#3-strincludes)
-    - [4. **str.startsWith**:](#4-strstartswith)
-    - [5. **str.endsWith**:](#5-strendswith)
+    - [1. str.indexOf('string')](#1-strindexofstring)
+    - [2. str.lastIndexOf(substr, position)](#2-strlastindexofsubstr-position)
+    - [3. str.includes('string'):](#3-strincludesstring)
+    - [4. str.startsWith('st'):](#4-strstartswithst)
+    - [5. str.endsWith('ng'):](#5-strendswithng)
   - [Getting a substring](#getting-a-substring)
-    - [1. `"STRING".slice`:](#1-stringslice)
-    - [2. `"STRING".substring`:](#2-stringsubstring)
-    - [3. `"STRING".substr`:](#3-stringsubstr)
+    - [1. str.slice:](#1-strslice)
+    - [2. str.substring:](#2-strsubstring)
+    - [3. str.substr:](#3-strsubstr)
   - [Comparing strings](#comparing-strings)
     - [str.codePointAt(pos)](#strcodepointatpos)
     - [String.fromCodePoint(code)](#stringfromcodepointcode)
@@ -37,7 +39,7 @@
     - [codePointAt()](#codepointat)
 
 
-## Quotes
+## 1 Quotes
 
 1. Strings can be enclosed within either **single** quotes, **double** quotes or **backticks**:
    1. ```js
@@ -51,17 +53,19 @@
 
       alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
       ```
-2. Backticks also allow us to specify a **template function** before the first backtick. The syntax is: ``` func `string` ```;
-   1. [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates)
+2. Backticks also allow us to specify a **template function** before the first backtick.
+3. The syntax is: ``` func `string` ```;
+   1. Follow to this [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) for more details.
 
-## Special characters
+## 2 Special characters
 
 ### 1. create multiline strings
-   1. ```js
-      let guestList = "Guests:\n * John\n * Pete\n * Mary";
 
-      alert(guestList); // a multiline list of guests, same as above
-      ```
+```js
+let guestList = "Guests:\n * John\n * Pete\n * Mary";
+
+alert(guestList); // a multiline list of guests, same as above
+```
 
 | Character	| Description |
 |---|---|
@@ -131,7 +135,7 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
 
 ## Searching for a substring
 
-### 1. **str.indexOf**
+### 1. str.indexOf('string')
    
    1. It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
       1. ```js
@@ -173,7 +177,7 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
          }
          ```
 
-### 2. **str.lastIndexOf(substr, position)**
+### 2. str.lastIndexOf(substr, position)
 
    1. It searches from the end of a string to its beginning.
       1. ```js
@@ -190,7 +194,7 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
             pos = foundPos - 1; // continue the search from the previous position
          }
          ```
-### 3. **str.includes**:
+### 3. str.includes('string'):
 
    1. The more modern method `str.includes(substr, pos)` **returns** `true`/`false` depending on whether `str` contains `substr` within.
       1. ```js
@@ -201,9 +205,9 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
 
          ```
 
-### 4. **str.startsWith**:
+### 4. str.startsWith('st'):
    1. `alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"`
-### 5. **str.endsWith**:
+### 5. str.endsWith('ng'):
    1. `alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"`
 
 ## Getting a substring
@@ -218,57 +222,64 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
 | `substr(start, length)`	| from start get length characters | allows negative `start` |
 
 
-### 1. `"STRING".slice`:
-   1. Returns the part of the string from `start` to (but not including) `end`.
-   2. Negative values for `start`/`end` are also **possible**.
-         1. ```js
-            let str = "stringify";
-            alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
-            alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+### 1. str.slice:
 
-            // If there is no second argument, then slice goes till the end of the string:
-            alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
+1. Returns the part of the string from `start` to (but not including) `end`.
+2. Negative values for `start`/`end` are also **possible**.
+    1. ```js
+      let str = "stringify";
+      alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
+      alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
 
-            // NEGATIVE
-            // start at the 4th position from the right, end at the 1st from the right
-            alert( str.slice(-4, -1) ); // 'gif'
-            ```
+      // If there is no second argument, then slice goes till the end of the string:
+      alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
+
+      // NEGATIVE
+      // start at the 4th position from the right, end at the 1st from the right
+      alert( str.slice(-4, -1) ); // 'gif'
+      ```
             
-### 2. `"STRING".substring`:
-   1. Returns the part of the string between `start` and `end` (not including `end`).
-   2. Negative arguments are (unlike slice) **not** supported, they are treated as `0`.
-   3. This is almost the same as `slice`, but it allows start to be `greater` than `end` (in this case it simply swaps `start` and `end` values).
-         1. ```js
-            let str = "stringify";
+### 2. str.substring:
 
-            // these are same for substring
-            alert( str.substring(2, 6) ); // "ring"
-            alert( str.substring(6, 2) ); // "ring"  (IT SWAPS THE VALUES)
+1. Returns the part of the string between `start` and `end` (not including `end`).
+2. Negative arguments are (unlike slice) **not** supported, they are treated as `0`.
+3. This is almost the same as `slice`, but it allows start to be `greater` than `end` (in this case it simply swaps `start` and `end` values).
+    1. ```js
+        let str = "stringify";
 
-            // ...but not for slice:
-            alert( str.slice(2, 6) ); // "ring" (the same)
-            alert( str.slice(6, 2) ); // "" (an empty string)
-            ```
+        // these are same for substring
+        alert( str.substring(2, 6) ); // "ring"
+        alert( str.substring(6, 2) ); // "ring"  (IT SWAPS THE VALUES)
 
-### 3. `"STRING".substr`:
-   1. Returns the part of the string from `start`, with the given `length`.
-   2. this one allows us to specify the `length` instead of the ending position:
-   3. it’s not recommended to use it. In practice, it’s supported everywhere.
-         1. ```js
-            let str = "stringify";
-            alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
+        // ...but not for slice:
+        alert( str.slice(2, 6) ); // "ring" (the same)
+        alert( str.slice(6, 2) ); // "" (an empty string)
+        ```
 
-            // The first argument may be negative, to count from the end:
-            alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
-            ```
+### 3. str.substr:
+
+1. Returns the part of the string from `start`, with the given `length`.
+2. this one allows us to specify the `length` instead of the ending position:
+3. it’s not recommended to use it. In practice, it’s supported everywhere.
+    1. ```js
+        let str = "stringify";
+        alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
+
+        // The first argument may be negative, to count from the end:
+        alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
+        ```
 
 
 ## Comparing strings
 
 1. A lowercase letter is always greater than the uppercase:
-   1. `alert( 'a' > 'Z' ); // true`
+   1. ```js
+      alert( 'a' > 'Z' ); // true
+      ```
 2. Letters with diacritical marks are “out of order”:
-   1. `alert( 'Österreich' > 'Zealand' ); // true`
+   1. ```js
+      alert( 'Österreich' > 'Zealand' ); // true
+      ```
 
 ### str.codePointAt(pos)
 
@@ -281,10 +292,12 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
       ```
 ### String.fromCodePoint(code)
 
+- Here `String` is **function**, not a string variable.
 - Creates a character by its numeric `code`
 
 ```js
 alert( String.fromCodePoint(90) ); // Z
+alert( String.fromCodePoint(65) ); // A
 alert( String.fromCodePoint(0x5a) ); // Z (we can also use a hex value as an argument)
 ```
 
