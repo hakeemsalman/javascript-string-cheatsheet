@@ -1,7 +1,10 @@
 # Strings
 
-> the textual data is stored as strings. There is *no separate type* for a single character.
+> *Click &#9733; if you like the project. Your contributions are heartily ♡ welcome.*
 
+<br/>
+
+> the textual data is stored as strings. There is *no separate type* for a single character.
 
 - [Strings](#strings)
   - [Quotes](#quotes)
@@ -31,7 +34,7 @@
     - [Extract the money](#extract-the-money)
   - [String Methods](#string-methods)
     - [str.at()](#strat)
-    - [str.charAt()](#strcharat)
+    - [codePointAt()](#codepointat)
 
 
 ## Quotes
@@ -414,7 +417,7 @@ function extractCurrencyValue(str) {
    - Negative integers: Count backward from the end of the string.
 - `undefined` returns, if given index not found.
 
-- at(index)
+- Parameter: `at(index)`
 - ```js
    'salman'.at(1); // a
   ```
@@ -425,3 +428,37 @@ function extractCurrencyValue(str) {
 - The index is based on zero (0 being the first character).
 - Supports only **Positive numbers**
 - if given index not found, an **empty string** is returned.
+
+- Parameter: `chatAt(index)`
+- ```js
+   'salman'.charAt(1); // a
+  ```
+
+### codePointAt()
+
+- The `codePointAt()` method returns a non-negative integer, the Unicode code point value at the specified position in a string.
+- It can handle characters that are represented by more than one UTF-16 code unit (such as emoji or rare characters).
+- If the position is out of range, `undefined` is returned.
+
+- Parameters: `codePointAt(index)`
+- ```js
+  "😍".codePointAt(0); // 128525
+  "ABC".codePointAt(0); // 65
+  ```
+
+> FUN: You can use this code in HTML as an entity without icon, `&#128525`.
+
+
+### concat()
+
+- The `concat()` method in JavaScript joins two or more strings together.
+- It returns a new string, combining the original string with the specified string(s).
+- This method does **not** change the **original** string but creates a **new** one.
+
+- Parameters: `concat(str1, ...,strN)`
+```javascript
+let str1 = "Hello";
+let str2 = "World";
+let result = str1.concat(" ", str2);  // Result: "Hello World"
+let result = str1.concat(str2);  // Result: "HelloWorld"
+```
