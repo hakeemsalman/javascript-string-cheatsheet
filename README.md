@@ -137,63 +137,87 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
 
 ### 1. str.indexOf('string')
    
-   1. It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
-      1. ```js
-         let str = 'Widget with id';
+- Parameters: `str.indexOf(string, pos)`
 
-         alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
-         alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
+1. It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
+```js
+let str = 'Widget with id';
 
-         alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
-         ```
+alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
+alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
 
-   2. The optional second parameter allows us to start searching from a given position.
+alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
+```
+
+2. The optional second parameter allows us to start searching from a given position.
  
-      1. ```js
-         let str = 'Widget with id';
-         alert( str.indexOf('id', 2) ) // 12
+```js
+let str = 'Widget with id';
+alert( str.indexOf('id', 2) ) // 12
 
-         // WORD SEARCH ALGORITHM
-         let str = 'As sly as a fox, as strong as an ox';
+// WORD SEARCH ALGORITHM
+let str = 'As sly as a fox, as strong as an ox';
 
-         let target = 'as'; // let's look for it
+let target = 'as'; // let's look for it
 
-         let pos = 0;
-         while (true) {
-            let foundPos = str.indexOf(target, pos);
-            if (foundPos == -1) break;
+let pos = 0;
+while (true) {
+  let foundPos = str.indexOf(target, pos);
+  if (foundPos == -1) break;
 
-            alert( `Found at ${foundPos}` ); // 7 17 27 
-            pos = foundPos + 1; // continue the search from the next position
-         }
+  alert( `Found at ${foundPos}` ); // 7 17 27 
+  pos = foundPos + 1; // continue the search from the next position
+}
 
-         // SHORT HAND 
-         let str = "As sly as a fox, as strong as an ox";
-         let target = "as";
+// SHORT HAND 
+let str = "As sly as a fox, as strong as an ox";
+let target = "as";
 
-         let pos = -1;
-         while ((pos = str.indexOf(target, pos + 1)) != -1) {
-            alert( pos );
-         }
-         ```
+let pos = -1;
+while ((pos = str.indexOf(target, pos + 1)) != -1) {
+  alert( pos );
+}
+```
+3. Return value when using an empty search string
+
+```js
+"hello world".indexOf(""); // returns 0
+"hello world".indexOf("", 0); // returns 0
+"hello world".indexOf("", 3); // returns 3
+
+// pos > str.length, then returns str.length
+"hello world".indexOf("", 11); // returns 11
+"hello world".indexOf("", 13); // returns 11
+```
+
 
 ### 2. str.lastIndexOf(substr, position)
 
-   1. It searches from the end of a string to its beginning.
-      1. ```js
-         let str = 'As sly as a fox, as strong as an ox';
+- It searches from the end of a string to its beginning.
+- It searches from right to left in the string.
+- If the value is not found, it returns `-1`.
+- If empty is passed into params, returns `length of string`.
+- You can provide an optional second argument to specify the starting index for the search (the search will stop before this index).
 
-         let target = 'as'; // let's look for it
+```js
+let str = 'As sly as a fox, as strong as an ox';
 
-         let pos = str.length; // last index
-         while (true) {
-            let foundPos = str.indexOf(target, pos);
-            if (foundPos == -1) break;
+let target = 'as'; // let's look for it
 
-            alert( `Found at ${foundPos}` ); // 27 17 7
-            pos = foundPos - 1; // continue the search from the previous position
-         }
-         ```
+let pos = str.length; // last index
+while (true) {
+  let foundPos = str.indexOf(target, pos);
+  if (foundPos == -1) break;
+
+  alert( `Found at ${foundPos}` ); // 27 17 7
+  pos = foundPos - 1; // continue the search from the previous position
+}
+
+let str = "Hello World, Hello!";
+let lastIndex = str.lastIndexOf("Hello");  // Result: 13
+let emptyIndex = str.lastIndexOf("");      // Result: 26 (length of the string)
+```
+
 ### 3. str.includes('string'):
 
    1. The more modern method `str.includes(substr, pos)` **returns** `true`/`false` depending on whether `str` contains `substr` within.
@@ -475,3 +499,4 @@ let str2 = "World";
 let result = str1.concat(" ", str2);  // Result: "Hello World"
 let result = str1.concat(str2);  // Result: "HelloWorld"
 ```
+
