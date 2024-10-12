@@ -500,3 +500,5 @@ let result = str1.concat(" ", str2);  // Result: "Hello World"
 let result = str1.concat(str2);  // Result: "HelloWorld"
 ```
 
+###### Source
+- [x] [Javascript.info](https://javascript.info)
