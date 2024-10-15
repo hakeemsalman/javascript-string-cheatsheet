@@ -36,7 +36,13 @@
     - [Extract the money](#extract-the-money)
   - [String Methods](#string-methods)
     - [str.at()](#strat)
+    - [str.charAt()](#strcharat)
     - [codePointAt()](#codepointat)
+    - [concat()](#concat)
+    - [endWith()](#endwith)
+    - [match()](#match)
+    - [normalize()](#normalize)
+    - [](#)
 
 
 ## 1 Quotes
@@ -220,14 +226,21 @@ let emptyIndex = str.lastIndexOf("");      // Result: 26 (length of the string)
 
 ### 3. str.includes('string'):
 
-   1. The more modern method `str.includes(substr, pos)` **returns** `true`/`false` depending on whether `str` contains `substr` within.
-      1. ```js
-         alert( "Widget with id".includes("Widget") ); // true
+- It performs a **case-sensitive** search to determine whether a given string may be found within this string.
+- It returns `true` if the substring is found, and `false` if it's not.
+- You can provide an optional second argument to specify the index from where the search should start (Defaults to `0`.)
 
-         alert( "Hello".includes("Bye") ); // false
-         alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
+- The more modern method `str.includes(substr, pos)` **returns** `true`/`false` depending on whether `str` contains `substr` within.
 
-         ```
+- Parameters: `includes(searchString, <position>)`
+
+```js
+alert( "Widget with id".includes("Widget") ); // true
+
+alert('World'.includes("world"));   // Result: false (case-sensitive)
+alert( "Hello".includes("Bye") ); // false
+alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
+```
 
 ### 4. str.startsWith('st'):
    1. `alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"`
@@ -455,9 +468,9 @@ function extractCurrencyValue(str) {
 - `undefined` returns, if given index not found.
 
 - Parameter: `at(index)`
-- ```js
-   'salman'.at(1); // a
-  ```
+```js
+  'salman'.at(1); // a
+```
 
 ### str.charAt()
 
@@ -467,21 +480,23 @@ function extractCurrencyValue(str) {
 - if given index not found, an **empty string** is returned.
 
 - Parameter: `chatAt(index)`
-- ```js
-   'salman'.charAt(1); // a
-  ```
+```js
+  'salman'.charAt(1); // a
+```
 
 ### codePointAt()
+
+> code point = `U+00F1` or `"\u00F1"`
 
 - The `codePointAt()` method returns a non-negative integer, the Unicode code point value at the specified position in a string.
 - It can handle characters that are represented by more than one UTF-16 code unit (such as emoji or rare characters).
 - If the position is out of range, `undefined` is returned.
 
 - Parameters: `codePointAt(index)`
-- ```js
+```js
   "😍".codePointAt(0); // 128525
   "ABC".codePointAt(0); // 65
-  ```
+```
 
 > FUN: You can use this code in HTML as an entity without icon, `&#128525`.
 
@@ -500,3 +515,64 @@ let result = str1.concat(" ", str2);  // Result: "Hello World"
 let result = str1.concat(str2);  // Result: "HelloWorld"
 ```
 
+
+### endWith()
+
+- The `endsWith()` method in JavaScript checks if a string **ends** with a specified substring.
+- It returns `true` if the string ends with the given substring, and `false` otherwise.
+- An optional second argument can be provided to treat the string as if it were only a certain length for the check.
+  - Defaults to `str.length`.
+
+- Parameters: `endsWith(searchString, <endPosition>)`
+```javascript
+let str = "Hello World";
+let result1 = str.endsWith("World");  // Result: true
+let result2 = str.endsWith("Hello");  // Result: false
+let result3 = str.endsWith("Hello", 5);  // Result: true (treats the string as "Hello")
+```
+
+### match()
+
+- The `match()` method in JavaScript retrieves the result of matching a string against a **regular expression**.
+- It returns an array of matches when there are matches, or `null` if no match is found.
+- If the regular expression includes the global flag (`/g`), it returns **all matches**; otherwise, it returns only the **first match**.
+- When the `regexp` parameter is a string or a number, it is implicitly converted to a [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) by using `new RegExp(regexp)`.
+- It may have unexpected results if **special characters** are not properly escaped.
+
+> If you only want the **first match** found, you might want to use [RegExp.prototype.exec()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) instead.
+
+- Parameters: `match(regexp)`
+```javascript
+let str = "The rain in Spain stays mainly in the plain";
+let result1 = str.match(/ain/g);  // Result: ["ain", "ain", "ain"]
+let result2 = str.match(/xyz/);   // Result: null (no match found)
+let result2 = str.match(/ain/);   // Result: ["ain"]
+
+const str1 = "NaN means not a number. Infinity contains -Infinity and +Infinity in JavaScript.";
+str1.match("number"); // "number" is a string. returns ["number"]
+
+console.log("123".match("1.3")); // [ "123" ]
+console.log("123".match("1\\.3")); // null
+
+```
+
+### normalize()
+
+- The `normalize()` method in JavaScript returns the Unicode Normalization Form of a given string.
+- It can be used to convert different but equivalent Unicode characters into a consistent form.
+- There are four normalization forms: `NFC`, `NFD`, `NFKC`, and `NFKD`:
+  - **NFC** (default): Combines characters into the composed form.
+  - **NFD**: Splits characters into the decomposed form.
+  - **NFKC**: Combines characters and applies compatibility transformations.
+  - **NFKD**: Decomposes characters and applies compatibility transformations.
+
+- Parameter: `normalize(form)`
+```javascript
+let str = "e\u0301";  // 'é' as 'e' + combining accent
+let normalized = str.normalize();  // Result: "é" (as a single composed character)
+```
+
+In this example, the `normalize()` method converts the decomposed form (`e + accent`) into the composed form (`é`).
+
+
+### 
