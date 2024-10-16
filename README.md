@@ -51,7 +51,15 @@
     - [split()](#split)
     - [Symbol.iterator](#symboliterator)
     - [How it works:](#how-it-works)
-    - [Example (String):](#example-string)
+    - [toLocaleLowerCase()](#tolocalelowercase)
+    - [Example:](#example)
+    - [trim()](#trim)
+      - [1. trimEnd()](#1-trimend)
+      - [2. trimStart()](#2-trimstart)
+    - [toString()](#tostring)
+    - [valueOf()](#valueof)
+  - [String Property](#string-property)
+    - [length](#length)
 
 
 ## 1 Quotes
@@ -744,7 +752,7 @@ Unicode code points depends on if the regex is [Unicode-aware](https://developer
   - `value`: The next value in the iteration.
   - `done`: A boolean that indicates whether the iteration is finished.
 
-### Example (String):
+
 ```javascript
 let str = "Hello";
 let iterator = str[Symbol.iterator]();  // Creates an iterator for the string
@@ -757,8 +765,101 @@ console.log(iterator.next());  // { value: 'o', done: false }
 console.log(iterator.next());  // { value: undefined, done: true } (iteration is complete)
 ```
 
+### toLocaleLowerCase()
 
+- The `toLocaleLowerCase()` method in JavaScript converts a string to lowercase, based on the host’s current locale (language and cultural rules).
+- It’s similar to `toLowerCase()`, but it takes into account locale-specific case mappings, which can differ in some languages.
+- If no locale is specified, it uses the default locale of the environment.
 
+### Example:
+```javascript
+let str = "HELLO WORLD";
+let result = str.toLocaleLowerCase();  // Result: "hello world"
+```
 
+### trim()
 
+- The `trim()` method in JavaScript removes **whitespace** from both ends of a string.
+- Whitespace includes spaces, tabs, and newlines.
+- It does **not** modify the original string but returns a new, trimmed string.
+- Params: **None**
+```javascript
+let str = "   Hello World   ";
+let result = str.trim();  // Result: "Hello World" (whitespace removed from both ends)
+``` 
 
+#### 1. trimEnd()
+- The `trimEnd()` method removes whitespace from the **end** (right side) of a string.
+- It does not modify the original string but returns a new string with the trailing whitespace removed.
+
+```javascript
+let str = "   Hello World   ";
+let result = str.trimEnd();  // Result: "   Hello World" (whitespace removed from the end)
+```
+
+#### 2. trimStart()
+- The `trimStart()` method removes whitespace from the **beginning** (left side) of a string.
+- Like `trimEnd()`, it returns a new string without modifying the original.
+
+```javascript
+let str = "   Hello World   ";
+let result = str.trimStart();  // Result: "Hello World   " (whitespace removed from the start)
+```
+
+- **`trimEnd()`**: Removes whitespace from the end of the string.
+- **`trimStart()`**: Removes whitespace from the beginning of the string.
+
+### toString()
+
+- The `toString()` method converts various data types (numbers, arrays, objects, etc.) into their **string** representation.
+- It’s automatically called when an object needs to be represented as a string (e.g., in concatenation or console output).
+- When called on a **string**, `toString()` simply returns the string itself.
+
+1. **Number:**
+```javascript
+let num = 123;
+let result = num.toString();  // Result: "123" (number converted to string)
+```
+
+1. **Array:**
+```javascript
+let arr = [1, 2, 3];
+let result = arr.toString();  // Result: "1,2,3" (array elements converted to a comma-separated string)
+```
+
+1. **Object:**
+By default, when `toString()` is called on a regular **object**, it returns the string `"[object Object]"`.
+You can override this behavior by defining your own `toString()` method inside the object.
+
+```javascript
+let obj = {
+  name: "John",
+  age: 30,
+  toString: function() {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  }
+};
+
+let result = obj.toString();  // Result: "Name: John, Age: 30" (custom string representation)
+```
+
+### valueOf()
+
+**PENDING**
+
+## String Property
+
+### length
+
+- The `length` data property of a **String** value contains the length of the string in UTF-16 code units.
+- It does **NOT** have *paranthesis*. `( )` &#10060;
+- It's a non-negative integer.
+  - | Property attributes of String: length | |
+    |---|---|
+    | Writable | 	no |
+    | Enumerable | 	no |
+    | Configurable | 	no |
+- Params: **None NO PARANTHESIS** 
+```js
+
+```
