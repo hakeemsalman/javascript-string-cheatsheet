@@ -42,7 +42,16 @@
     - [endWith()](#endwith)
     - [match()](#match)
     - [normalize()](#normalize)
-    - [](#)
+    - [padEnd()](#padend)
+    - [padStart()](#padstart)
+    - [repeat()](#repeat)
+    - [replace()](#replace)
+    - [replaceAll()](#replaceall)
+    - [search()](#search)
+    - [split()](#split)
+    - [Symbol.iterator](#symboliterator)
+    - [How it works:](#how-it-works)
+    - [Example (String):](#example-string)
 
 
 ## 1 Quotes
@@ -295,9 +304,9 @@ alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
 
 ### 3. str.substr:
 
-1. Returns the part of the string from `start`, with the given `length`.
+1. Returns the part of the string from [`start`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr), with the given `length`.
 2. this one allows us to specify the `length` instead of the ending position:
-3. it’s not recommended to use it. In practice, it’s supported everywhere.
+3. it’s not recommended to use it. In practice, it’s supported everywhere. (in future <span style="color: red">**DEPRECATED**</span>)
     1. ```js
         let str = "stringify";
         alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
@@ -575,4 +584,181 @@ let normalized = str.normalize();  // Result: "é" (as a single composed charact
 In this example, the `normalize()` method converts the decomposed form (`e + accent`) into the composed form (`é`).
 
 
-### 
+### padEnd()
+
+- The `padEnd()` method in JavaScript pads the current string with another string (or characters) until the resulting string reaches the specified length.
+- The padding is added to the **end** of the original string.
+- If the padding length exceeds the specified length, the string is truncated to fit.
+- If no padding string is provided, spaces are used by default.
+
+- Params: `padEnd(targetLength, <padString>)`
+```javascript
+let str = "Hello";
+let result1 = str.padEnd(10);         // Result: "Hello     " (adds 5 spaces)
+let result2 = str.padEnd(10, ".");    // Result: "Hello....." (adds 5 dots)
+let result3 = str.padEnd(8, "123");   // Result: "Hello123" (pads with "123")
+```
+
+
+### padStart()
+
+- The `padStart()` method in JavaScript pads the current string with another string (or characters) until the resulting string reaches the specified length.
+- The padding is added to the **beginning** of the original string.
+- If the padding length exceeds the specified length, the string is truncated to fit.
+- If no padding string is provided, spaces are used by default.
+
+
+- Params: `padStart(targetLength, <padString>)`
+```javascript
+let str = "Hello";
+let result1 = str.padStart(10);         // Result: "     Hello" (adds 5 spaces)
+let result2 = str.padStart(10, ".");    // Result: ".....Hello" (adds 5 dots)
+let result3 = str.padStart(8, "123");   // Result: "123Hello" (pads with "123")
+```
+
+### repeat()
+
+- The `repeat()` method in JavaScript returns a new string with the original string repeated a specified number of times.
+- The number of repetitions must be a positive integer.
+- If the repetition count is `0`, an empty string is returned.
+- If the count is a decimal, it is automatically rounded down to an integer.
+- 
+- Params: `repeat(count)`
+- Exceptions:
+  - `RangeError`: Thrown if `count` is negative or if `count` overflows maximum string length. 
+```javascript
+let str = "Hello";
+let result1 = str.repeat(3);   // Result: "HelloHelloHello"
+let result2 = str.repeat(0);   // Result: "" (empty string)
+let result2 = str.repeat(-1); // RangeError
+let result2 = str.repeat(1 / 0); // RangeError
+```
+
+### replace()
+
+- The `replace()` method in JavaScript returns a new string where the **first occurrence** of a **specified value** or **regular expression (regex)** is replaced with a new value.
+- It only replaces the first match unless a global (`/g`) flag is used with a regular expression.
+- The replacement can be a string or a function to dynamically generate the replacement.
+- The original string remains unchanged.
+
+- Params: `replace(pattern, replacement)`
+```javascript
+let str = "Hello World";
+let result1 = str.replace("World", "JavaScript");  // Result: "Hello JavaScript"
+let result2 = str.replace(/o/g, "0");              // Result: "Hell0 W0rld" (global replacement)
+```
+
+### replaceAll()
+
+- The `replaceAll()` method in JavaScript returns a new string with **all occurrences** of a specified value or regular expression replaced with a new value.
+- Unlike `replace()`, it replaces **every match** in the string, not just the first one.
+- It can take a string or a regular expression (without the global flag) as the target to replace.
+-  The original string is left unchanged.
+
+- Params: `replace(pattern, replacement)`
+- Exceptions:
+  - `TypeError` : Thrown if the `pattern` is a `regex` that does not have the global (`g`) flag set (its `flags` property does not contain "`g`").
+
+```javascript
+let str = "Hello World, Hello Universe";
+let result1 = str.replaceAll("Hello", "Hi");    // Result: "Hi World, Hi Universe"
+let result2 = str.replaceAll("o", "0");         // Result: "Hell0 W0rld, Hell0 Universe"
+```
+
+### search()
+
+- The `search()` method in JavaScript searches for a match between a string and a regular expression.
+- It returns the **index of the first match** or `-1` if no match is found.
+- Unlike `indexOf()`, `search()` only works with regular expressions, not plain strings.
+- It does not support a second argument for specifying the start position.
+- The `g` flag of `regexp` has no effect on the `search()` result
+
+> If you need the content of the matched text, use [String.prototype.match()](#match)
+
+- Params: `search(regexp)`
+```javascript
+let str = "The rain in Spain";
+let result1 = str.search(/ain/);   // Result: 5 (first occurrence of "ain")
+let result2 = str.search(/xyz/);   // Result: -1 (no match found)
+```
+
+### split()
+
+- The [`split()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) method in JavaScript divides a string into an array of substrings based on a specified separator.
+- The separator can be a string or a regular expression.
+- An optional second argument can limit the number of splits.
+- The original string remains unchanged.
+
+- Params: `split(separator, limit)`
+
+```javascript
+let str = "apple,banana,orange";
+let result1 = str.split(",");        // Result: ["apple", "banana", "orange"]
+let result2 = str.split(",", 2);     // Result: ["apple", "banana"] (limit to 2 splits)
+let result2 = str.split(",", 0);     // Result: [] (empty array, limit to 0 splits)
+let result3 = str.split("");         // Result: ["a", "p", "p", "l", "e", ",", ...] (splits every character)
+```
+
+<table style="width: 700px; background-color: #321C20;" align="center">
+<tr>
+<td>
+
+&#9888; **Warning**: When the empty string (`""`) is used as a separator, the string is **not** split by *user-perceived* characters ([grapheme clusters](https://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)) or unicode characters (code points), but by UTF-16 code units. This destroys [surrogate pairs](https://unicode.org/faq/utf_bom.html#utf16-2). See this [StackOverflow](https://stackoverflow.com/questions/4547609/how-can-i-get-a-character-array-from-a-string/34717402#34717402) question
+
+</td>
+</tr>
+</table>
+
+<table style="background-color: #321C20;" align="center">
+
+<tr>
+<td>
+
+If `separator` is a `regexp` that matches empty strings, whether the match is split by UTF-16 code units or
+Unicode code points depends on if the regex is [Unicode-aware](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicode#unicode-aware_mode).
+
+```js
+"😄😄".split(/(?:)/); // [ "\ud83d", "\ude04", "\ud83d", "\ude04" ]
+"😄😄".split(/(?:)/u); // [ "😄", "😄" ]
+```
+
+</td>
+</tr>
+</table>
+
+
+
+
+
+### Symbol.iterator
+
+
+- `[Symbol.iterator]()` is a built-in method that allows an object to be iterated, like in `for...of` loops, by returning an iterator.
+- For strings, arrays, and many other objects, this method defines the default iteration behavior.
+- An object with `[Symbol.iterator]()` can be looped over, as it returns an iterator that produces the values one by one.
+- Parameters: **None**.
+- 
+### How it works:
+- The object’s `[Symbol.iterator]()` method must return an iterator object with a `next()` method.
+- The `next()` method provides two properties:
+  - `value`: The next value in the iteration.
+  - `done`: A boolean that indicates whether the iteration is finished.
+
+### Example (String):
+```javascript
+let str = "Hello";
+let iterator = str[Symbol.iterator]();  // Creates an iterator for the string
+
+console.log(iterator.next());  // { value: 'H', done: false }
+console.log(iterator.next());  // { value: 'e', done: false }
+console.log(iterator.next());  // { value: 'l', done: false }
+console.log(iterator.next());  // { value: 'l', done: false }
+console.log(iterator.next());  // { value: 'o', done: false }
+console.log(iterator.next());  // { value: undefined, done: true } (iteration is complete)
+```
+
+
+
+
+
+
