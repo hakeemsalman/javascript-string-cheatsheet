@@ -39,6 +39,7 @@
     - [str.charAt()](#strcharat)
     - [codePointAt()](#codepointat)
     - [concat()](#concat)
+          - [Source](#source)
     - [endWith()](#endwith)
     - [match()](#match)
     - [normalize()](#normalize)
@@ -532,6 +533,8 @@ let result = str1.concat(" ", str2);  // Result: "Hello World"
 let result = str1.concat(str2);  // Result: "HelloWorld"
 ```
 
+###### Source
+- [x] [Javascript.info](https://javascript.info)
 
 ### endWith()
 
