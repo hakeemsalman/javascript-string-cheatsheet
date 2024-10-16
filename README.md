@@ -39,7 +39,6 @@
     - [str.charAt()](#strcharat)
     - [codePointAt()](#codepointat)
     - [concat()](#concat)
-          - [Source](#source)
     - [endWith()](#endwith)
     - [match()](#match)
     - [normalize()](#normalize)
@@ -61,6 +60,7 @@
     - [valueOf()](#valueof)
   - [String Property](#string-property)
     - [length](#length)
+          - [Source](#source)
 
 
 ## 1 Quotes
@@ -533,9 +533,6 @@ let result = str1.concat(" ", str2);  // Result: "Hello World"
 let result = str1.concat(str2);  // Result: "HelloWorld"
 ```
 
-###### Source
-- [x] [Javascript.info](https://javascript.info)
-
 ### endWith()
 
 - The `endsWith()` method in JavaScript checks if a string **ends** with a specified substring.
@@ -864,5 +861,12 @@ let result = obj.toString();  // Result: "Name: John, Age: 30" (custom string re
     | Configurable | 	no |
 - Params: **None NO PARANTHESIS** 
 ```js
+const str = 'Life, the universe and everything. Answer:';
 
+console.log(`${str} ${str.length}`);
+// Expected output: "Life, the universe and everything. Answer: 
 ```
+
+
+###### Source
+- [x] [Javascript.info](https://javascript.info)
