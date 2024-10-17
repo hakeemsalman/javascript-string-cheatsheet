@@ -52,7 +52,6 @@
     - [Symbol.iterator](#symboliterator)
     - [How it works:](#how-it-works)
     - [toLocaleLowerCase()](#tolocalelowercase)
-    - [Example:](#example)
     - [trim()](#trim)
       - [1. trimEnd()](#1-trimend)
       - [2. trimStart()](#2-trimstart)
@@ -559,6 +558,7 @@ let result3 = str.endsWith("Hello", 5);  // Result: true (treats the string as "
 > If you only want the **first match** found, you might want to use [RegExp.prototype.exec()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) instead.
 
 - Parameters: `match(regexp)`
+
 ```javascript
 let str = "The rain in Spain stays mainly in the plain";
 let result1 = str.match(/ain/g);  // Result: ["ain", "ain", "ain"]
@@ -584,6 +584,7 @@ console.log("123".match("1\\.3")); // null
   - **NFKD**: Decomposes characters and applies compatibility transformations.
 
 - Parameter: `normalize(form)`
+
 ```javascript
 let str = "e\u0301";  // 'é' as 'e' + combining accent
 let normalized = str.normalize();  // Result: "é" (as a single composed character)
@@ -600,6 +601,7 @@ In this example, the `normalize()` method converts the decomposed form (`e + acc
 - If no padding string is provided, spaces are used by default.
 
 - Params: `padEnd(targetLength, <padString>)`
+
 ```javascript
 let str = "Hello";
 let result1 = str.padEnd(10);         // Result: "Hello     " (adds 5 spaces)
@@ -617,6 +619,7 @@ let result3 = str.padEnd(8, "123");   // Result: "Hello123" (pads with "123")
 
 
 - Params: `padStart(targetLength, <padString>)`
+
 ```javascript
 let str = "Hello";
 let result1 = str.padStart(10);         // Result: "     Hello" (adds 5 spaces)
@@ -634,6 +637,7 @@ let result3 = str.padStart(8, "123");   // Result: "123Hello" (pads with "123")
 - Params: `repeat(count)`
 - Exceptions:
   - `RangeError`: Thrown if `count` is negative or if `count` overflows maximum string length. 
+
 ```javascript
 let str = "Hello";
 let result1 = str.repeat(3);   // Result: "HelloHelloHello"
@@ -650,6 +654,7 @@ let result2 = str.repeat(1 / 0); // RangeError
 - The original string remains unchanged.
 
 - Params: `replace(pattern, replacement)`
+
 ```javascript
 let str = "Hello World";
 let result1 = str.replace("World", "JavaScript");  // Result: "Hello JavaScript"
@@ -684,6 +689,7 @@ let result2 = str.replaceAll("o", "0");         // Result: "Hell0 W0rld, Hell0 U
 > If you need the content of the matched text, use [String.prototype.match()](#match)
 
 - Params: `search(regexp)`
+
 ```javascript
 let str = "The rain in Spain";
 let result1 = str.search(/ain/);   // Result: 5 (first occurrence of "ain")
@@ -734,10 +740,6 @@ Unicode code points depends on if the regex is [Unicode-aware](https://developer
 </tr>
 </table>
 
-
-
-
-
 ### Symbol.iterator
 
 
@@ -770,8 +772,8 @@ console.log(iterator.next());  // { value: undefined, done: true } (iteration is
 - The `toLocaleLowerCase()` method in JavaScript converts a string to lowercase, based on the host’s current locale (language and cultural rules).
 - It’s similar to `toLowerCase()`, but it takes into account locale-specific case mappings, which can differ in some languages.
 - If no locale is specified, it uses the default locale of the environment.
+- Params: **None**
 
-### Example:
 ```javascript
 let str = "HELLO WORLD";
 let result = str.toLocaleLowerCase();  // Result: "hello world"
@@ -783,6 +785,7 @@ let result = str.toLocaleLowerCase();  // Result: "hello world"
 - Whitespace includes spaces, tabs, and newlines.
 - It does **not** modify the original string but returns a new, trimmed string.
 - Params: **None**
+
 ```javascript
 let str = "   Hello World   ";
 let result = str.trim();  // Result: "Hello World" (whitespace removed from both ends)
