@@ -163,6 +163,7 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
 - Parameters: `str.indexOf(string, pos)`
 
 1. It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
+
 ```js
 let str = 'Widget with id';
 
@@ -172,7 +173,7 @@ alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
 alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
 ```
 
-2. The optional second parameter allows us to start searching from a given position.
+1. The optional second parameter allows us to start searching from a given position.
  
 ```js
 let str = 'Widget with id';
@@ -201,6 +202,7 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
   alert( pos );
 }
 ```
+
 3. Return value when using an empty search string
 
 ```js
@@ -212,7 +214,6 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 "hello world".indexOf("", 11); // returns 11
 "hello world".indexOf("", 13); // returns 11
 ```
-
 
 ### 2. str.lastIndexOf(substr, position)
 
