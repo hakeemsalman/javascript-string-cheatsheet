@@ -355,9 +355,7 @@ alert( String.fromCodePoint(65) ); // A
 alert( String.fromCodePoint(0x5a) ); // Z (we can also use a hex value as an argument)
 ```
 
-<table align="center">
-<tr>
-<td>
+---
 
 ```js
 let str = '';
@@ -371,10 +369,7 @@ alert( str );
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
 
-</td>
-</tr>
-</table>
-
+---
 
 ## Tasks
 
@@ -713,15 +708,11 @@ let result2 = str.split(",", 0);     // Result: [] (empty array, limit to 0 spli
 let result3 = str.split("");         // Result: ["a", "p", "p", "l", "e", ",", ...] (splits every character)
 ```
 
-<table align="center">
-<tr>
-<td>
-
-&#9888; **Warning**: When the empty string (`""`) is used as a separator, the string is **not** split by *user-perceived* characters ([grapheme clusters](https://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)) or unicode characters (code points), but by UTF-16 code units. This destroys [surrogate pairs](https://unicode.org/faq/utf_bom.html#utf16-2). See this [StackOverflow](https://stackoverflow.com/questions/4547609/how-can-i-get-a-character-array-from-a-string/34717402#34717402) question
-
-
-If `separator` is a `regexp` that matches empty strings, whether the match is split by UTF-16 code units or
-Unicode code points depends on if the regex is [Unicode-aware](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicode#unicode-aware_mode).
+---
+| NOTE |
+|---|
+| &#9888; **Warning**: When the empty string (`""`) is used as a separator, the string is **not** split by *user-perceived* characters ([grapheme clusters](https://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)) or unicode characters (code points), but by UTF-16 code units. This destroys [surrogate pairs](https://unicode.org/faq/utf_bom.html#utf16-2). See this [StackOverflow](https://stackoverflow.com/questions/4547609/how-can-i-get-a-character-array-from-a-string/34717402#34717402) question |
+| If `separator` is a `regexp` that matches empty strings, whether the match is split by UTF-16 code units or Unicode code points depends on if the regex is [Unicode-aware](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicode#unicode-aware_mode). |
 
 
 ```js
@@ -729,9 +720,7 @@ Unicode code points depends on if the regex is [Unicode-aware](https://developer
 "😄😄".split(/(?:)/u); // [ "😄", "😄" ]
 ```
 
-</td>
-</tr>
-</table>
+---
 
 ### Symbol.iterator
 
