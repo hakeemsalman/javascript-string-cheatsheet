@@ -709,10 +709,9 @@ let result3 = str.split("");         // Result: ["a", "p", "p", "l", "e", ",", .
 ```
 
 ---
-| NOTE |
-|---|
-| &#9888; **Warning**: When the empty string (`""`) is used as a separator, the string is **not** split by *user-perceived* characters ([grapheme clusters](https://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)) or unicode characters (code points), but by UTF-16 code units. This destroys [surrogate pairs](https://unicode.org/faq/utf_bom.html#utf16-2). See this [StackOverflow](https://stackoverflow.com/questions/4547609/how-can-i-get-a-character-array-from-a-string/34717402#34717402) question |
-| If `separator` is a `regexp` that matches empty strings, whether the match is split by UTF-16 code units or Unicode code points depends on if the regex is [Unicode-aware](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicode#unicode-aware_mode). |
+&#9888; **Warning**: When the empty string (`""`) is used as a separator, the string is **not** split by *user-perceived* characters ([grapheme clusters](https://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)) or unicode characters (code points), but by UTF-16 code units. This destroys [surrogate pairs](https://unicode.org/faq/utf_bom.html#utf16-2). See this [StackOverflow](https://stackoverflow.com/questions/4547609/how-can-i-get-a-character-array-from-a-string/34717402#34717402) question
+
+If `separator` is a `regexp` that matches empty strings, whether the match is split by UTF-16 code units or Unicode code points depends on if the regex is [Unicode-aware](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicode#unicode-aware_mode).
 
 
 ```js
