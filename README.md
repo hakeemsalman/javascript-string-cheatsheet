@@ -282,17 +282,17 @@ alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
 1. Returns the part of the string from `start` to (but not including) `end`.
 2. Negative values for `start`/`end` are also **possible**.
     1. ```js
-      let str = "stringify";
-      alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
-      alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+        let str = "stringify";
+        alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
+        alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
 
-      // If there is no second argument, then slice goes till the end of the string:
-      alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
+        // If there is no second argument, then slice goes till the end of the string:
+        alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
 
-      // NEGATIVE
-      // start at the 4th position from the right, end at the 1st from the right
-      alert( str.slice(-4, -1) ); // 'gif'
-      ```
+        // NEGATIVE
+        // start at the 4th position from the right, end at the 1st from the right
+        alert( str.slice(-4, -1) ); // 'gif'
+        ```
             
 ### 2. str.substring:
 
