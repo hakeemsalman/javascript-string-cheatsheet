@@ -6,7 +6,8 @@
 
 ### Other cheatsheet or notes links
 
-- [Javascript Array cheatsheet](https://hakeemsalman.github.io/javascript-array-cheatsheet/)
+- [Javascript Array learning kit](https://hakeemsalman.github.io/javascript-array-cheatsheet/)
+- [HTML learning kit](https://hakeemsalman.github.io/html-learning-kit/)
 
 --- 
 
