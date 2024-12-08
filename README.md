@@ -4,13 +4,15 @@
 
 <br/>
 
-- the textual data is stored as strings. There is *no separate type* for a single character.
+### Other cheatsheet or notes links
+
+- [Javascript Array cheatsheet](https://hakeemsalman.github.io/javascript-array-cheatsheet/)
 
 --- 
 
 - [Strings](#strings)
-  - [1 Quotes](#1-quotes)
-  - [2 Special characters](#2-special-characters)
+  - [Quotes](#quotes)
+  - [Special characters](#special-characters)
     - [1. create multiline strings](#1-create-multiline-strings)
   - [String Length](#string-length)
   - [Accessing characters](#accessing-characters)
@@ -61,8 +63,11 @@
     - [length](#length)
           - [Source](#source)
 
+## Definition
 
-## 1 Quotes
+- the textual data is stored as strings. There is *no separate type* for a single character.
+
+## Quotes
 
 1. Strings can be enclosed within either **single** quotes, **double** quotes or **backticks**:
    1. ```js
@@ -80,7 +85,7 @@
 3. The syntax is: ``` func `string` ```;
    1. Follow to this [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) for more details.
 
-## 2 Special characters
+## Special characters
 
 ### 1. create multiline strings
 
